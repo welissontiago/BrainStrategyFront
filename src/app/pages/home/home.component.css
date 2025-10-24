@@ -1,0 +1,12 @@
+.gradient {
+  position: relative;
+}
+
+.banner {
+  position: absolute;
+  top: 80px;
+  right: 0;
+}
+.banner img {
+  max-width: 100%;
+}

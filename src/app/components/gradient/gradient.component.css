@@ -22,8 +22,19 @@
 }
 
 .hero-content {
+  max-width: 1400px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin: 0 auto;
   position: relative;
   z-index: 2;
-  padding: 80px 60px;
-  max-width: 600px;
+  margin-top: 150px;
+}
+
+.hero-content p {
+  max-width: 500px;
+}
+
+.hero-content h1 {
+  max-width: 700px;
 }
