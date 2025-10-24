@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --section-gap: calc(20px);
+  --gradient-padding: 120px;
+  --gradient-title-margin: 100px;
+  --section-skew-Y: -12deg;
+  --section-angle-sin: 0.212;
+  --transform-origin-x: calc(var(--section-gap) * 0.8);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-gap: calc((100vw - 1200px + 20px * 2) / 2);
+  }
+}
+
+.section-title-1 {
+  font-size: 64px;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: 500px;
+  max-width: 80vw;
+}
+
+@media (min-width: 450px) {
+  .section-title-1 {
+    font-size: 70px;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-title-1 {
+    font-size: 90px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-title-1 {
+    font-size: 100px;
+    width: 600px;
+  }
+}
+
+.text {
+  line-height: 1;
+  margin: var(--gradient-title-margin) 0 0 0;
+  text-transform: none;
+  letter-spacing: 2px;
+  min-height: 200px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.text-above {
+  color: var(--font-color);
+  position: relative;
+}
+
+.text-under {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+.text-under-blended {
+  color: #3a3a3a;
+  mix-blend-mode: color-burn;
+}
+
+.text-under-overlay {
+  opacity: 0.2;
+  color: #3a3a3a;
+}
+
+#gradient-canvas {
+  width: 100%;
+  height: 100%;
+  --gradientcolorzero: #6ec3f4;
+  --gradientcolorone: #3a3aff;
+  --gradientcolortwo: #ff61ab;
+  --gradientcolorthree: #e63946;
+}
