@@ -1,13 +1,35 @@
-<header>
-  <div class="header-container">
-    <h1 class="text-red-500">BrainStrategy</h1>
-    <nav>
-      <a routerLink="/Densenvolvedores" routerLinkActive="active-link">Densenvolvedores</a>
-      <a routerLink="/Sobre" routerLinkActive="active-link">Sobre</a>
-      <a routerLink="/Contato" routerLinkActive="active-link">Contato</a>
+<header class="header">
+  <div class="header-container flex justify-between top-5 content-center">
+    <h1 class="text-red-500 text-2xl text-violet-50 font-semibold hover:text-violet-100 cursor-pointer p-2">BrainStrategy</h1>
+    <nav class="flex gap-12">
+      <a class="text-violet-50 text-lg hover:text-violet-200 cursor-pointer p-2 font-medium" routerLink="/Densenvolvedores" routerLinkActive="active-link">Densenvolvedores</a>
+      <a class="text-violet-50 text-lg hover:text-violet-200 cursor-pointer p-2 font-medium" routerLink="/Sobre" routerLinkActive="active-link">Sobre</a>
+      <a class="text-violet-50 text-lg hover:text-violet-200 cursor-pointer p-2 font-medium" routerLink="/Contato" routerLinkActive="active-link">Contato</a>
     </nav>
-    <div class="right-button">
-      <button matButton="outlined">Basic</button>
+    <div class="right-button flex">
+      <button class="group flex items-center gap-1 px-4 py-2 rounded-md text-violet-50 font-medium transition-colors duration-500">
+        Entrar
+        <span class="relative w-5 h-5 flex items-center justify-center">
+          <svg class="absolute w-5 h-5 transition-opacity duration-300 opacity-100 group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+          <svg class="absolute w-5 h-5 transition-opacity duration-300 opacity-0 group-hover:opacity-100" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </span>
+      </button>
+
+      <button matButton="outlined" class="group flex items-center gap-1 px-4 py-2 rounded-md text-violet-50 font-medium transition-colors duration-500 rounded-3xl">
+        <span id="gradient-canvas" #gradientCanvas class="gradient-background">Fale conosco</span>
+        <span class="relative w-5 h-5 flex items-center justify-center">
+          <svg class="absolute w-5 h-5 transition-opacity duration-300 opacity-100 group-hover:opacity-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+          <svg class="absolute w-5 h-5 transition-opacity duration-300 opacity-0 group-hover:opacity-100" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </span>
+      </button>
     </div>
   </div>
 </header>
