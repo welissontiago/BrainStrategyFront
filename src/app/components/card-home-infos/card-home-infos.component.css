@@ -1,0 +1,16 @@
+.infos-text h2 {
+  max-width: 450px;
+  margin-top: 40px;
+}
+
+.infos-text p {
+  max-width: 500px;
+  margin-top: 45px;
+}
+
+.card-home-infos {
+  max-width: 1400px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin: 0 auto;
+}
