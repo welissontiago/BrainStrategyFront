@@ -1,0 +1,93 @@
+.container-cards {
+  margin-top: 140px;
+}
+
+.fade-event {
+  max-width: 1400px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin: 0 auto;
+}
+
+.p-text {
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.mySwiper {
+  margin-top: 100px;
+  align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+swiper-container::part(wrapper) {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.mySwiper swiper-slide:first-child {
+  margin-left: 300px;
+}
+
+@media (max-width: 1640px) {
+  .mySwiper swiper-slide:first-child {
+    margin-left: 150px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .mySwiper swiper-slide:first-child {
+    margin-left: 0px;
+  }
+}
+
+swiper-slide {
+  display: flex;
+  height: auto;
+}
+
+.card {
+  background-color: oklch(98.5% 0 0);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  position: relative;
+  box-sizing: border-box;
+  max-width: 550px;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* .card:hover {
+  transform: scale3d(1.05, 1.05, 1);
+  transition: all 1s ease;
+} */
+
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: oklch(80% 0.1 276.966);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 8px;
+  width: 100%;
+  background-color: oklch(51.1% 0.262 276.966);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.icons {
+  display: flex;
+
+  justify-content: space-around;
+}
+
+.icon {
+  width: 60px;
+  height: 50px;
+}
