@@ -35,19 +35,24 @@ export class AprendizadoService {
   ) {}
 
   getHomeData(): Observable<HomeData> {
-    return this.http.get<HomeData>(`${this.API_URL}/home/`);
-  }
-
-  createAprendizado(payload: AprendizadoPayload): Observable<any> {
-    const token = this.storageService.getItem<string>('accessToken');
+    const token = localStorage.getItem('accessToken');
     if (!token) {
       console.error('Nenhum token encontrado, a requisição pode falhar.');
     }
-
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
+    return this.http.get<HomeData>(`${this.API_URL}/home/`, { headers });
+  }
 
+  createAprendizado(payload: AprendizadoPayload): Observable<any> {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+      console.error('Nenhum token encontrado, a requisição pode falhar.');
+    }
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
     return this.http.post(`${this.API_URL}/learning-records/`, payload, {
       headers,
     });
