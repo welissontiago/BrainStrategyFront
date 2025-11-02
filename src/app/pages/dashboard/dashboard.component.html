@@ -1,0 +1,159 @@
+<section class="dashboard" aria-label="Centro de Aprendizado">
+  <div class="flex-container flex justify-between items-center ">
+    <div class="right-content">
+      <h1>Centro de Aprendizado</h1>
+      <p>Gerencie e compartilhe conhecimentos da sua equipe</p>
+    </div>
+    <div class="left-button flex gap-4">
+      <button (click)="showModalAprendizado = true" class="button w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold text-white bg-indigo-600 shadow hover:bg-indigo-500">
+        + Novo aprendizado
+      </button>
+
+      <button (click)="showModalUsuario = true" class="button w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold text-white bg-green-600 shadow hover:bg-green-500">
+        Cadastrar usuários
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="showModalAprendizado" class="fixed inset-0 flex items-center justify-center bg-gray-900/50 z-50">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl p-6 overflow-y-auto max-h-[90vh]">
+      <div class="flex justify-between items-start mb-4 border-b pb-3">
+        <div>
+          <h3 class="text-xl font-bold text-gray-900">Registrar Novo Aprendizado</h3>
+          <p class="text-sm text-gray-500">Compartilhe o conhecimento adquirido com a equipe</p>
+        </div>
+        <button (click)="showModalAprendizado = false" class="text-gray-400 hover:text-gray-600">✕</button>
+      </div>
+
+      <form [formGroup]="addAprendizadoForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <input formControlName="titulo" placeholder="Ex: Curso de React Avançado" class="w-full border rounded-md p-2" />
+        <select formControlName="tipo" class="w-full border rounded-md p-2">
+          <option value="">Selecione o tipo</option>
+          <option>Curso</option>
+          <option>Workshop</option>
+          <option>Treinamento</option>
+        </select>
+
+        <input formControlName="colaborador" placeholder="Ex: Uelisson Tiago" class="w-full border rounded-md p-2" />
+        <select formControlName="categoria" class="w-full border rounded-md p-2">
+          <option value="">Selecione a categoria</option>
+          <option>Front-end</option>
+          <option>Back-end</option>
+          <option>Gestão</option>
+        </select>
+
+        <input type="date" formControlName="dataConclusao" class="w-full border rounded-md p-2" />
+        <input formControlName="duracao" placeholder="Ex: 40h" class="w-full border rounded-md p-2" />
+
+        <textarea formControlName="resumo" rows="3" placeholder="Descreva o aprendizado" class="sm:col-span-2 border rounded-md p-2"></textarea>
+
+        <div class="sm:col-span-2">
+          <label class="flex justify-between items-center text-sm font-medium text-gray-700">
+            Vídeos do Aprendizado
+            <button type="button" (click)="addVideo()" class="text-indigo-600 font-medium">+ Adicionar vídeo</button>
+          </label>
+
+          <div *ngFor="let video of videos.controls; let i = index" [formGroup]="video" class="mt-2 border p-3 rounded-md">
+
+            <div class="flex gap-2 mb-2">
+              <input formControlName="titulo" placeholder="Título do vídeo" class="w-1/2 border rounded-md p-2" />
+              <button type="button" (click)="removeVideo(i)" class="text-red-600 font-bold">✕</button>
+            </div>
+
+            <div class="border-2 border-dashed border-gray-300 rounded-md p-4 text-center cursor-pointer hover:bg-gray-50" (dragover)="onDragOver($event)" (drop)="onFileDropped($event, i)">
+              <p class="text-gray-500">Arraste o vídeo aqui ou clique para selecionar</p>
+              <input type="file" (change)="onFileSelected($event, i)" accept="video/*" class="hidden" />
+            </div>
+
+            <video *ngIf="video.value.preview" [src]="video.value.preview" controls class="mt-2 w-full rounded-md"></video>
+          </div>
+        </div>
+      </form>
+
+      <div class="flex justify-end space-x-3 mt-6">
+        <button (click)="showModalAprendizado = false" class="px-4 py-2 bg-gray-100 rounded-md text-gray-700 hover:bg-gray-200">Cancelar</button>
+        <button (click)="salvarAprendizado()" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500">Registrar Aprendizado</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showModalUsuario" class="fixed inset-0 flex items-center justify-center bg-gray-900/50 z-50">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 overflow-y-auto max-h-[90vh]">
+      <div class="flex justify-between items-start mb-4 border-b pb-3">
+        <div>
+          <h3 class="text-xl font-bold text-gray-900">Cadastrar Usuário</h3>
+          <p class="text-sm text-gray-500">Crie um novo usuário para o sistema</p>
+        </div>
+        <button (click)="showModalUsuario = false" class="text-gray-400 hover:text-gray-600">✕</button>
+      </div>
+
+      <form [formGroup]="addUsuarioForm" class="flex flex-col gap-4">
+        <div>
+          <label class="text-sm font-medium text-gray-700">Nome *</label>
+          <input type="text" formControlName="nome" placeholder="Ex: Oliver Parcero" class="w-full border rounded-md p-2 mt-1" />
+        </div>
+
+        <div>
+          <label class="text-sm font-medium text-gray-700">E-mail *</label>
+          <input type="email" formControlName="email" placeholder="Ex: parcero@email.com" class="w-full border rounded-md p-2 mt-1" />
+        </div>
+
+        <div>
+          <label class="text-sm font-medium text-gray-700">Senha *</label>
+          <input type="password" formControlName="senha" placeholder="Digite uma senha segura" class="w-full border rounded-md p-2 mt-1" />
+        </div>
+
+        <div class="flex items-center gap-2">
+          <input type="checkbox" id="admin" formControlName="isAdmin" class="h-4 w-4 text-indigo-600" />
+          <label for="admin" class="text-sm text-gray-700">Conceder privilégios de administrador</label>
+        </div>
+      </form>
+
+      <div class="flex justify-end space-x-3 mt-6">
+        <button (click)="showModalUsuario = false" class="px-4 py-2 bg-gray-100 rounded-md text-gray-700 hover:bg-gray-200">Cancelar</button>
+        <button (click)="salvarUsuario()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500">Cadastrar Usuário</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="minicards-content" aria-label="cards contents dashboard">
+    <app-cards class="card">
+      <h1 class="title-card roboto" title>Total de Aprendizados</h1>
+      <mat-icon class="icon-card" icon>auto_stories</mat-icon>
+      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>3</h2>
+      <p class="mt-4 font-light roboto" text>Registros na plataforma</p>
+    </app-cards>
+
+    <app-cards class="card">
+      <h1 class="title-card" title>Colaboradores Ativos</h1>
+      <mat-icon class="icon-card" icon>person_apron</mat-icon>
+      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>3</h2>
+      <p class="mt-4 font-light roboto" text>Participando do programa</p>
+    </app-cards>
+
+    <app-cards class="card">
+      <h1 class="title-card" title>Horas de Capacitação</h1>
+      <mat-icon class="icon-card" icon>play_lesson</mat-icon>
+      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>80h</h2>
+      <p class="mt-4 font-light roboto" text>Investidas em aprendizado</p>
+    </app-cards>
+
+    <app-cards class="card">
+      <h1 class="title-card" title>Este Mês</h1>
+      <mat-icon class="icon-card" icon>add_reaction</mat-icon>
+      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>0</h2>
+      <p class="mt-4 font-light roboto" text>Novos registros</p>
+    </app-cards>
+  </div>
+
+  <div class="pesquisa">
+    <div class="flex gap-4 titles">
+      <mat-icon class="icon-search" matSuffix>search</mat-icon>
+      <h1>Buscar Aprendizado</h1>
+    </div>
+    <p>Pesquise por título, colaborador ou categoria</p>
+    <app-pesquisar></app-pesquisar>
+  </div>
+</section>

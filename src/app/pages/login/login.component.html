@@ -1,1 +1,64 @@
-<p>login works!</p>
+<div class="grid-login bg-sky-50">
+  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img src="logo/brainstrategy.png" alt="Logo" class="mx-auto h-24 w-auto" />
+      <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Entrar na conta</h2>
+    </div>
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form action="#" method="POST" class="space-y-6" [formGroup]="login">
+        <div>
+          <label for="email" class="block text-sm/6 font-medium text-gray-900">Email</label>
+          <div class="mt-2">
+            <input formControlName="email" id="email" type="email" name="email" required autocomplete="email" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 border border-gray-300 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600" />
+            <mat-error *ngIf="
+          login.get('email')?.invalid &&
+          (login.get('email')?.touched ||
+            login.get('email')?.dirty)
+        ">
+              <span class="text-red-500" *ngIf="login.get('email')?.hasError('required')">
+                Por favor, digite um email!
+              </span>
+              <span class="text-red-500" *ngIf="login.get('email')?.hasError('email')">
+                Digite um email valido.
+              </span>
+            </mat-error>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="password" class="block text-sm/6 font-medium text-gray-900">Senha</label>
+            <div class="text-sm">
+              <a href="#" class="font-semibold text-blue-600 hover:text-indigo-500">Esqueceu a senha?</a>
+            </div>
+          </div>
+          <div class="mt-2">
+            <input formControlName="password" id="password" type="password" name="password" required autocomplete="current-password" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 border border-gray-300 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600" />
+            <mat-error *ngIf="
+          login.get('password')?.invalid &&
+          (login.get('password')?.touched ||
+            login.get('password')?.dirty)
+        ">
+              <span class="text-red-500" *ngIf="login.get('password')?.hasError('required')">
+                Por favor, digite uma senha!
+              </span>
+            </mat-error>
+          </div>
+        </div>
+
+        <div>
+          <button type="submit" class="button flex w-full justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Entrar</button>
+        </div>
+      </form>
+
+      <p class="mt-10 text-center text-sm/6 text-gray-500">
+        Não é membro ainda?
+        <a href="#" class="font-semibold text-blue-500 hover:text-indigo-500">Entre em contato!</a>
+      </p>
+    </div>
+  </div>
+  <div class="img">
+    <img class="empresa" src="imgs/empresa-2.jpg" alt="Uma imagem de varias pessoas trabalhando em um escritório moderno">
+  </div>
+</div>

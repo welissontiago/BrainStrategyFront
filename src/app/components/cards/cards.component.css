@@ -1,0 +1,22 @@
+.dash-infos {
+  background: #fefefe;
+  box-sizing: border-box;
+  padding: 30px 20px;
+  border-radius: 5px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 1rem;
+}
+
+@media (max-width: 430px) {
+  .dash-infos {
+    padding: 15px 10px;
+  }
+}

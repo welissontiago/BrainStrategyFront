@@ -1,0 +1,68 @@
+.footer {
+  background: oklch(45.7% 0.24 277.023);
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.footer-container {
+  max-width: 1400px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.footer-left img {
+  max-width: 100px;
+}
+
+.social {
+  display: flex;
+  gap: 15px;
+  margin-left: 100px;
+}
+
+.icon {
+  width: 30px;
+}
+
+.icon-fb {
+  fill: blue;
+  transition: all 0.3s ease, fill 0.3s ease;
+  scale: 1;
+}
+
+.social a:hover .icon-fb {
+  fill: oklch(54.6% 0.245 262.881);
+  scale: 1.1;
+}
+
+.insta {
+  transition: all 0.3s ease;
+  scale: 1;
+}
+
+.social a:hover .insta {
+  scale: 1.1;
+}
+
+.linkedin {
+  fill: #1da1f2;
+  transition: all 0.3s ease, fill 0.3s ease;
+  scale: 1;
+}
+
+.social a:hover .linkedin {
+  fill: oklch(74.6% 0.16 232.661);
+  scale: 1.1;
+}
+
+.footer-right a:hover {
+  color: oklch(64.5% 0.246 16.439);
+}
+
+.direitos {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 40px;
+}

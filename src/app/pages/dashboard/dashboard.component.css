@@ -1,0 +1,95 @@
+.dashboard {
+  background: #eff2f8;
+  height: 100vh;
+}
+
+.flex-container {
+  max-width: 1400px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 30px;
+  margin: 0 auto;
+}
+
+.right-content h1 {
+  font-family: Poppins;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background: linear-gradient(90deg, #3c84f3 0%, #209a77 63%, #4eb47c 98.44%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.left-button {
+  gap: 20px;
+}
+
+.button {
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    #3986e8 0%,
+    #318dc0 21.63%,
+    #17a14f 83.65%
+  );
+  width: 200px;
+}
+
+.button:hover {
+  background: linear-gradient(
+    90deg,
+    #138d3f 10%,
+    #2b7fa1 21.63%,
+    #3986e8 73.65%
+  );
+}
+
+.minicards-content {
+  max-width: 1400px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 50px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 35px;
+  margin-top: 40px;
+}
+
+.pesquisa {
+  max-width: 1350px;
+  padding: 25px;
+  margin: 0 auto;
+  margin-top: 30px;
+  background: white;
+}
+
+.titles {
+  align-items: center;
+}
+
+.titles h1 {
+  color: #1a212d;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.pesquisa p {
+  color: #989da7;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 20px;
+}
+
+.icon-search {
+  color: black;
+}

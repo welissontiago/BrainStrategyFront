@@ -1,0 +1,28 @@
+.button {
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    #3986e8 0%,
+    #318dc0 21.63%,
+    #17a14f 83.65%
+  );
+}
+
+.button:hover {
+  background: linear-gradient(
+    90deg,
+    #138d3f 10%,
+    #2b7fa1 21.63%,
+    #3986e8 73.65%
+  );
+}
+
+.grid-login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+
+.empresa {
+  height: 100%;
+}

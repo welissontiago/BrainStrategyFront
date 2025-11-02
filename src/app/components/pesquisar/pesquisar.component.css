@@ -1,0 +1,33 @@
+.example-form {
+  min-width: 150px;
+  max-width: 1300px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  border: 1px solid #d3e1fa !important;
+  border-radius: 5px !important;
+  background-color: #fefefe !important;
+}
+
+.label-pesquisar {
+  font-size: 1rem;
+  color: #a2adb3;
+}
+
+::ng-deep .icon-search {
+  color: #a2adb3;
+}
+
+@media (max-width: 540px) {
+  .example-form {
+    max-width: 300px;
+  }
+  .pesquisa-bg {
+    top: 450px;
+  }
+}

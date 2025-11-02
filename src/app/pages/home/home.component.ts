@@ -5,6 +5,7 @@ import { CardHomeInfosComponent } from '../../components/card-home-infos/card-ho
 import { CardsEmpresasTiposComponent } from '../../components/cards-empresas-tipos/cards-empresas-tipos.component';
 import { NossoTimeComponent } from '../../components/nosso-time/nosso-time.component';
 import { ContatoComponent } from '../../components/contato/contato.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ import { ContatoComponent } from '../../components/contato/contato.component';
     CardsEmpresasTiposComponent,
     NossoTimeComponent,
     ContatoComponent,
+    FooterComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
