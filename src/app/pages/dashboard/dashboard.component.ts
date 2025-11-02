@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CardsComponent } from '../../components/cards/cards.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { PesquisarComponent } from '../../components/pesquisar/pesquisar.component';
 import {
   FormBuilder,
@@ -24,6 +24,7 @@ import {
   createPersonService,
   person,
 } from '../../core/services/createPerson.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -48,6 +49,10 @@ export class DashboardComponent implements OnInit {
   addAprendizadoForm!: FormGroup;
   aprendizadosList: any[] = [];
   addUsuarioForm!: FormGroup;
+  public isSuperUser: boolean = false;
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  insights: any = {};
 
   constructor(
     private fb: FormBuilder,
@@ -56,6 +61,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isSuperUser = this.authService.isSuperUser();
     this.addAprendizadoForm = this.fb.group({
       titulo: ['', Validators.required],
       tipo: ['', Validators.required],
@@ -84,9 +90,10 @@ export class DashboardComponent implements OnInit {
     this.aprendizadoService.getHomeData().subscribe({
       next: (data: HomeData) => {
         this.aprendizadosList = data.learning_records;
+        this.insights = data.insights;
       },
       error: (err) => {
-        console.error('Erro ao buscar aprendizados:', err);
+        console.error('Erro ao buscar dados da home:', err);
       },
     });
   }
@@ -188,5 +195,14 @@ export class DashboardComponent implements OnInit {
         console.error('Erro ao cadastrar usuário:', err);
       },
     });
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

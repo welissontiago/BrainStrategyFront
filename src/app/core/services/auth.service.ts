@@ -18,6 +18,7 @@ export class AuthService {
         if (response.access && response.refresh) {
           localStorage.setItem('accessToken', response.access);
           localStorage.setItem('refreshToken', response.refresh);
+          localStorage.setItem('currentUser', JSON.stringify(response.usuario));
         }
       })
     );
@@ -26,9 +27,24 @@ export class AuthService {
   logout() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
+    localStorage.removeItem('currentUser');
   }
 
   getAccessToken(): string | null {
     return localStorage.getItem('accessToken');
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getAccessToken();
+  }
+
+  getCurrentUser(): any | null {
+    const user = localStorage.getItem('currentUser');
+    return user ? JSON.parse(user) : null;
+  }
+
+  isSuperUser(): boolean {
+    const user = this.getCurrentUser();
+    return user ? user.is_superuser : false;
   }
 }

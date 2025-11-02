@@ -9,8 +9,13 @@
         + Novo aprendizado
       </button>
 
-      <button (click)="showModalUsuario = true" class="button w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold text-white bg-green-600 shadow hover:bg-green-500">
+      <button *ngIf="isSuperUser" (click)="showModalUsuario = true" class="button w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold text-white bg-green-600 shadow hover:bg-green-500">
         Cadastrar usuários
+      </button>
+
+      <button *ngIf="isLoggedIn()" (click)="logout()" class="flex justify-center gap-2">
+        <mat-icon class="icon text-red-600">logout</mat-icon>
+        <p class="text-red-600">sair</p>
       </button>
     </div>
   </div>
@@ -148,28 +153,28 @@
     <app-cards class="card">
       <h1 class="title-card roboto" title>Total de Aprendizados</h1>
       <mat-icon class="icon-card" icon>auto_stories</mat-icon>
-      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>3</h2>
+      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>{{ insights.total_learning_records || 0 }}</h2>
       <p class="mt-4 font-light roboto" text>Registros na plataforma</p>
     </app-cards>
 
     <app-cards class="card">
       <h1 class="title-card" title>Colaboradores Ativos</h1>
       <mat-icon class="icon-card" icon>person_apron</mat-icon>
-      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>3</h2>
+      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>{{ insights.active_collaborators || 0 }}</h2>
       <p class="mt-4 font-light roboto" text>Participando do programa</p>
     </app-cards>
 
     <app-cards class="card">
       <h1 class="title-card" title>Horas de Capacitação</h1>
       <mat-icon class="icon-card" icon>play_lesson</mat-icon>
-      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>80h</h2>
+      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>{{ insights.learning_hours || 0 }}h</h2>
       <p class="mt-4 font-light roboto" text>Investidas em aprendizado</p>
     </app-cards>
 
     <app-cards class="card">
       <h1 class="title-card" title>Este Mês</h1>
       <mat-icon class="icon-card" icon>add_reaction</mat-icon>
-      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>0</h2>
+      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>{{ insights.learning_records_last_month || 0 }}</h2>
       <p class="mt-4 font-light roboto" text>Novos registros</p>
     </app-cards>
   </div>
