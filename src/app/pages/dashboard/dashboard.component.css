@@ -1,6 +1,5 @@
 .dashboard {
   background: #eff2f8;
-  height: 100vh;
 }
 
 .flex-container {
@@ -92,6 +91,10 @@
 
 .icon-search {
   color: black;
+}
+
+.aprendizado {
+  padding-bottom: 40px;
 }
 
 .aprendizado h1 {

@@ -69,6 +69,7 @@ export class DashboardComponent implements OnInit {
       senha: ['', Validators.required],
       isAdmin: [false],
     });
+    this.loadAprendizados();
   }
 
   loadAprendizados() {
