@@ -20,7 +20,7 @@ export class createPersonService {
 
   constructor(private http: HttpClient) {}
 
-  createAprendizado(payload: person): Observable<any> {
+  createPerson(payload: person): Observable<any> {
     const token = localStorage.getItem('accessToken');
     if (!token) {
       console.error('Nenhum token encontrado, a requisição pode falhar.');

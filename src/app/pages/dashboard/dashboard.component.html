@@ -88,9 +88,15 @@
       </div>
 
       <form [formGroup]="addUsuarioForm" class="flex flex-col gap-4">
+
         <div>
           <label class="text-sm font-medium text-gray-700">Nome *</label>
           <input type="text" formControlName="nome" placeholder="Ex: Oliver Parcero" class="w-full border rounded-md p-2 mt-1" />
+        </div>
+
+        <div>
+          <label class="text-sm font-medium text-gray-700">Nome de Usuário (login) *</label>
+          <input type="text" formControlName="username" placeholder="Ex: oparcero" class="w-full border rounded-md p-2 mt-1" />
         </div>
 
         <div>
@@ -103,6 +109,26 @@
           <input type="password" formControlName="senha" placeholder="Digite uma senha segura" class="w-full border rounded-md p-2 mt-1" />
         </div>
 
+        <div>
+          <label class="text-sm font-medium text-gray-700">Departamento *</label>
+          <select formControlName="department" class="w-full border rounded-md p-2 mt-1 bg-white">
+            <option value="">Selecione um departamento</option>
+            <option value="RH">RH</option>
+            <option value="Desenvolvimentos">Desenvolvimentos</option>
+            <option value="Contabilidade">Contabilidade</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="text-sm font-medium text-gray-700">Cargo *</label>
+          <select formControlName="role" class="w-full border rounded-md p-2 mt-1 bg-white">
+            <option value="">Selecione um cargo</option>
+            <option value="Funcionario">Funcionário</option>
+            <option value="Gerente">Gerente</option>
+            <option value="Administrador">Administrador</option>
+          </select>
+        </div>
+
         <div class="flex items-center gap-2">
           <input type="checkbox" id="admin" formControlName="isAdmin" class="h-4 w-4 text-indigo-600" />
           <label for="admin" class="text-sm text-gray-700">Conceder privilégios de administrador</label>
@@ -111,7 +137,7 @@
 
       <div class="flex justify-end space-x-3 mt-6">
         <button (click)="showModalUsuario = false" class="px-4 py-2 bg-gray-100 rounded-md text-gray-700 hover:bg-gray-200">Cancelar</button>
-        <button (click)="salvarUsuario()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500">Cadastrar Usuário</button>
+        <button (click)="salvarUsuario()" [disabled]="addUsuarioForm.invalid" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 disabled:opacity-50">Cadastrar Usuário</button>
       </div>
     </div>
   </div>

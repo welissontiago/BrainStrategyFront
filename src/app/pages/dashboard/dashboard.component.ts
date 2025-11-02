@@ -20,6 +20,10 @@ import {
   HomeData,
   VideoPayload,
 } from '../../core/services/aprendizado.service';
+import {
+  createPersonService,
+  person,
+} from '../../core/services/createPerson.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -47,7 +51,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private aprendizadoService: AprendizadoService
+    private aprendizadoService: AprendizadoService,
+    private createPersonService: createPersonService
   ) {}
 
   ngOnInit(): void {
@@ -65,8 +70,11 @@ export class DashboardComponent implements OnInit {
 
     this.addUsuarioForm = this.fb.group({
       nome: ['', Validators.required],
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', Validators.required],
+      department: ['', Validators.required],
+      role: ['', Validators.required],
       isAdmin: [false],
     });
     this.loadAprendizados();
@@ -160,8 +168,25 @@ export class DashboardComponent implements OnInit {
       this.addUsuarioForm.markAllAsTouched();
       return;
     }
-
-    console.log('Usuário cadastrado:', this.addUsuarioForm.value);
-    this.showModalUsuario = false;
+    const formValue = this.addUsuarioForm.value;
+    const payload: person = {
+      name: formValue.nome,
+      email: formValue.email,
+      password: formValue.senha,
+      is_superuser: formValue.isAdmin,
+      username: formValue.username,
+      department: formValue.department,
+      role: formValue.role,
+    };
+    this.createPersonService.createPerson(payload).subscribe({
+      next: (response) => {
+        console.log('Usuário cadastrado com sucesso:', response);
+        this.showModalUsuario = false;
+        this.addUsuarioForm.reset();
+      },
+      error: (err) => {
+        console.error('Erro ao cadastrar usuário:', err);
+      },
+    });
   }
 }
