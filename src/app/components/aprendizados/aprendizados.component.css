@@ -1,0 +1,78 @@
+.aprendizados {
+  max-width: 1350px;
+  padding: 25px;
+  margin: 0 auto;
+  border-radius: 5px;
+  background: #fdfefe;
+}
+
+.title-aprendizados {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-aprendizados h1 {
+  color: #000;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.icon {
+  color: white;
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.etiqueta p {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.etiqueta {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  border-radius: 10px;
+  background: #16a249;
+  padding: 8px;
+  gap: 5px;
+}
+
+.more-infos h2 {
+  color: #6b7280;
+  font-family: Poppins;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.description {
+  color: #6b7280;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 30px;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: oklch(80% 0.1 276.966);
+  margin-top: 20px;
+}
+
+.curse-infos {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}

@@ -12,6 +12,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { AprendizadosComponent } from '../../components/aprendizados/aprendizados.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,6 +25,7 @@ import {
     RouterModule,
     PesquisarComponent,
     ReactiveFormsModule,
+    AprendizadosComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
