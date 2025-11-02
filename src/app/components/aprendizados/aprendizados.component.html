@@ -1,27 +1,27 @@
 <div class="aprendizados">
   <div class="title-aprendizados">
-    <h1>Titulo do aprendizado aqui</h1>
+    <h1>{{ aprendizado.title }}</h1>
     <div class="etiqueta">
       <mat-icon class="icon">sell</mat-icon>
-      <p>categoria</p>
+      <p>{{ aprendizado.category_name }}</p>
     </div>
   </div>
   <div class="more-infos">
-    <h2>Tipo</h2>
-    <p class="description">Descrição</p>
+    <h2>{{ aprendizado.learning_type }}</h2>
+    <p class="description">{{ aprendizado.summary }}</p>
     <div class="line"></div>
     <div class="curse-infos">
       <div class="flex gap-2">
         <mat-icon>person</mat-icon>
-        <p>nome da pessoa</p>
+        <p>{{ aprendizado.created_by }}</p>
       </div>
       <div class="flex gap-2">
         <mat-icon>calendar_month</mat-icon>
-        <p>data do aprendizado</p>
+        <p>{{ aprendizado.created_at | date: 'dd/MM/yyyy' }}</p>
       </div>
       <div class="flex gap-2">
         <mat-icon>schedule</mat-icon>
-        <p>duracao do aprendizado</p>
+        <p>{{ aprendizado.reading_duration }}</p>
       </div>
     </div>
   </div>

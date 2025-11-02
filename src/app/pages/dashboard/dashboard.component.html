@@ -26,7 +26,9 @@
       </div>
 
       <form [formGroup]="addAprendizadoForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
         <input formControlName="titulo" placeholder="Ex: Curso de React Avançado" class="w-full border rounded-md p-2" />
+
         <select formControlName="tipo" class="w-full border rounded-md p-2">
           <option value="">Selecione o tipo</option>
           <option>Curso</option>
@@ -34,17 +36,14 @@
           <option>Treinamento</option>
         </select>
 
-        <input formControlName="colaborador" placeholder="Ex: Uelisson Tiago" class="w-full border rounded-md p-2" />
         <select formControlName="categoria" class="w-full border rounded-md p-2">
           <option value="">Selecione a categoria</option>
-          <option>Front-end</option>
-          <option>Back-end</option>
           <option>Gestão</option>
+          <option>tecnologia</option>
+          <option>softskill</option>
         </select>
 
-        <input type="date" formControlName="dataConclusao" class="w-full border rounded-md p-2" />
-        <input formControlName="duracao" placeholder="Ex: 40h" class="w-full border rounded-md p-2" />
-
+        <input formControlName="duracao" placeholder="Duração (Ex: 40:00:00)" class="w-full border rounded-md p-2" />
         <textarea formControlName="resumo" rows="3" placeholder="Descreva o aprendizado" class="sm:col-span-2 border rounded-md p-2"></textarea>
 
         <div class="sm:col-span-2">
@@ -53,19 +52,20 @@
             <button type="button" (click)="addVideo()" class="text-indigo-600 font-medium">+ Adicionar vídeo</button>
           </label>
 
-          <div *ngFor="let video of videos.controls; let i = index" [formGroup]="video" class="mt-2 border p-3 rounded-md">
+          <div formArrayName="videos">
+            <div *ngFor="let video of videos.controls; let i = index" [formGroupName]="i" class="mt-2 border p-3 rounded-md grid grid-cols-1 sm:grid-cols-2 gap-3">
 
-            <div class="flex gap-2 mb-2">
-              <input formControlName="titulo" placeholder="Título do vídeo" class="w-1/2 border rounded-md p-2" />
-              <button type="button" (click)="removeVideo(i)" class="text-red-600 font-bold">✕</button>
+              <input formControlName="titulo" placeholder="Título do vídeo" class="w-full border rounded-md p-2" />
+
+              <div class="flex items-center">
+                <button type="button" (click)="removeVideo(i)" class="text-red-600 font-bold px-2">✕ Remover</button>
+              </div>
+
+              <div class="sm:col-span-2">
+                <input formControlName="url" placeholder="URL do vídeo (Ex: https://...)" class="w-full border rounded-md p-2" />
+              </div>
+
             </div>
-
-            <div class="border-2 border-dashed border-gray-300 rounded-md p-4 text-center cursor-pointer hover:bg-gray-50" (dragover)="onDragOver($event)" (drop)="onFileDropped($event, i)">
-              <p class="text-gray-500">Arraste o vídeo aqui ou clique para selecionar</p>
-              <input type="file" (change)="onFileSelected($event, i)" accept="video/*" class="hidden" />
-            </div>
-
-            <video *ngIf="video.value.preview" [src]="video.value.preview" controls class="mt-2 w-full rounded-md"></video>
           </div>
         </div>
       </form>
@@ -159,6 +159,11 @@
 
   <div class="aprendizado">
     <h1>Aprendizados Registrados</h1>
-    <app-aprendizados></app-aprendizados>
+    <div *ngFor="let aprendizado of aprendizadosList">
+      <app-aprendizados [aprendizado]="aprendizado"></app-aprendizados>
+    </div>
+    <div *ngIf="!aprendizadosList || aprendizadosList.length === 0" class="text-center text-gray-500 mt-4">
+      <p>Nenhum aprendizado registrado ainda.</p>
+    </div>
   </div>
 </section>

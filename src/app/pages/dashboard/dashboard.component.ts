@@ -13,6 +13,13 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { AprendizadosComponent } from '../../components/aprendizados/aprendizados.component';
+import { Aprendizado } from '../../core/models/aprendizado.model';
+import {
+  AprendizadoPayload,
+  AprendizadoService,
+  HomeData,
+  VideoPayload,
+} from '../../core/services/aprendizado.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,18 +42,23 @@ export class DashboardComponent implements OnInit {
   showModalUsuario = false;
 
   addAprendizadoForm!: FormGroup;
+  aprendizadosList: any[] = [];
   addUsuarioForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private aprendizadoService: AprendizadoService
+  ) {}
 
   ngOnInit(): void {
     this.addAprendizadoForm = this.fb.group({
       titulo: ['', Validators.required],
       tipo: ['', Validators.required],
-      colaborador: ['', Validators.required],
       categoria: ['', Validators.required],
-      dataConclusao: ['', Validators.required],
-      duracao: ['', Validators.required],
+      duracao: [
+        '',
+        [Validators.required, Validators.pattern(/^\d+:\d{2}:\d{2}$/)],
+      ],
       resumo: ['', Validators.required],
       videos: this.fb.array([]),
     });
@@ -59,15 +71,31 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  get videos(): FormArray<FormGroup> {
-    return this.addAprendizadoForm.get('videos') as FormArray<FormGroup>;
+  loadAprendizados() {
+    this.aprendizadoService.getHomeData().subscribe({
+      next: (data: HomeData) => {
+        this.aprendizadosList = data.learning_records;
+      },
+      error: (err) => {
+        console.error('Erro ao buscar aprendizados:', err);
+      },
+    });
+  }
+
+  get videos(): FormArray {
+    return this.addAprendizadoForm.get('videos') as FormArray;
   }
 
   addVideo() {
     const videoGroup = this.fb.group({
       titulo: ['', Validators.required],
-      arquivo: [null, Validators.required],
-      preview: [''],
+      url: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i),
+        ],
+      ],
     });
     this.videos.push(videoGroup);
   }
@@ -76,35 +104,22 @@ export class DashboardComponent implements OnInit {
     this.videos.removeAt(index);
   }
 
-  onDragOver(event: DragEvent): void {
-    event.preventDefault();
-  }
-
-  onFileDropped(event: DragEvent, index: number): void {
-    event.preventDefault();
-    if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
-      const file = event.dataTransfer.files[0];
-      this.setVideoFile(index, file);
-    }
-  }
-
-  onFileSelected(event: Event, index: number): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      this.setVideoFile(index, file);
-    }
-  }
-
-  private setVideoFile(index: number, file: File): void {
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.videos.at(index).patchValue({
-        arquivo: file,
-        preview: reader.result as string,
-      });
+  private mapTipo(tipo: string): string {
+    const map: { [key: string]: string } = {
+      Curso: 'Course',
+      Workshop: 'Workshop',
+      Treinamento: 'Workshop',
     };
-    reader.readAsDataURL(file);
+    return map[tipo] || 'Article';
+  }
+
+  private mapCategoria(categoria: string): number {
+    const map: { [key: string]: number } = {
+      Gestão: 1,
+      tecnologia: 2,
+      softskill: 3,
+    };
+    return map[categoria];
   }
 
   salvarAprendizado() {
@@ -113,8 +128,30 @@ export class DashboardComponent implements OnInit {
       return;
     }
 
-    console.log('Aprendizado salvo:', this.addAprendizadoForm.value);
-    this.showModalAprendizado = false;
+    const formValue = this.addAprendizadoForm.value;
+    const payload: AprendizadoPayload = {
+      title: formValue.titulo,
+      summary: formValue.resumo,
+      learning_type: this.mapTipo(formValue.tipo),
+      category: this.mapCategoria(formValue.categoria),
+      reading_duration: formValue.duracao,
+      videos: formValue.videos.map(
+        (v: any) => ({ title: v.titulo, url: v.url } as VideoPayload)
+      ),
+    };
+
+    this.aprendizadoService.createAprendizado(payload).subscribe({
+      next: (response) => {
+        console.log('Aprendizado salvo:', response);
+        this.showModalAprendizado = false;
+        this.addAprendizadoForm.reset();
+        this.videos.clear();
+        this.loadAprendizados();
+      },
+      error: (err) => {
+        console.error('Erro ao salvar aprendizado:', err);
+      },
+    });
   }
 
   salvarUsuario() {
