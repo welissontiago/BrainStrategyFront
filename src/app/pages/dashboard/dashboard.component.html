@@ -153,7 +153,7 @@
     <app-cards class="card">
       <h1 class="title-card roboto" title>Total de Aprendizados</h1>
       <mat-icon class="icon-card" icon>auto_stories</mat-icon>
-      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>{{ insights.total_learning_records || 0 }}</h2>
+      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>{{ insights.total_learning || 0 }}</h2>
       <p class="mt-4 font-light roboto" text>Registros na plataforma</p>
     </app-cards>
 
@@ -167,14 +167,14 @@
     <app-cards class="card">
       <h1 class="title-card" title>Horas de Capacitação</h1>
       <mat-icon class="icon-card" icon>play_lesson</mat-icon>
-      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>{{ insights.learning_hours || 0 }}h</h2>
+      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>{{ insights.total_hours_learning || 0 }}h</h2>
       <p class="mt-4 font-light roboto" text>Investidas em aprendizado</p>
     </app-cards>
 
     <app-cards class="card">
       <h1 class="title-card" title>Este Mês</h1>
       <mat-icon class="icon-card" icon>add_reaction</mat-icon>
-      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>{{ insights.learning_records_last_month || 0 }}</h2>
+      <h2 class="content-card text-4xl font-semibold poppins mt-4" content>{{ insights.total_learning_last_month || 0 }}</h2>
       <p class="mt-4 font-light roboto" text>Novos registros</p>
     </app-cards>
   </div>
