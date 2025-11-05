@@ -21,6 +21,14 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'curso',
+    loadComponent: () =>
+      import('./pages/tela-exemplo-curso/tela-exemplo-curso.component').then(
+        (m) => m.TelaExemploCursoComponent
+      ),
+    canActivate: [authGuard],
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',

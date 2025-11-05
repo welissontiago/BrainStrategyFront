@@ -190,9 +190,9 @@
 
   <div class="aprendizado">
     <h1>Aprendizados Registrados</h1>
-    <div *ngFor="let aprendizado of aprendizadosList">
+    <a class="cursor-pointer" [routerLink]="['/curso']" *ngFor="let aprendizado of aprendizadosList">
       <app-aprendizados [aprendizado]="aprendizado"></app-aprendizados>
-    </div>
+    </a>
     <div *ngIf="!aprendizadosList || aprendizadosList.length === 0" class="text-center text-gray-500 mt-4">
       <p>Nenhum aprendizado registrado ainda.</p>
     </div>

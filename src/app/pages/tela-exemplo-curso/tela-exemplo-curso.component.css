@@ -1,0 +1,31 @@
+.container-principal {
+  max-width: 1500px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 30px;
+  margin: 0 auto;
+}
+
+.voltar {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  cursor: pointer;
+}
+
+.tabs {
+  max-width: 1000px;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1050px 1fr;
+}
+
+.right-content {
+  display: flex;
+  gap: 10px;
+}
+
+.professor {
+  font-size: 12px;
+}
